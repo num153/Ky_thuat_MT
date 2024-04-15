@@ -1,0 +1,24 @@
+#include<iostream>
+#include <cmath>
+using namespace std;
+
+void nhapMang(int a[], int n){
+    for(int i=0;i<n;i++){
+        cout << "a[" << i << "]:"; cin >> a[i];
+    }
+}
+void xuatMang(int a[], int n){
+    for(int i=0;i<n;i++){
+        cout << a[i] << "\t";
+    }
+    cout << endl;
+}
+
+int main()
+{
+    int a[10];int n;
+    cout << "Nhap n phan tu: "; cin >> n;
+    nhapMang(a,n);
+    xuatMang(a,n);
+    
+}              
