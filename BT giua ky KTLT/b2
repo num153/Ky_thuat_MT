@@ -65,7 +65,25 @@ void ascendingArr(int *&a, int &n){
         }
     }
 }
-
+void decendingArr(int *&a, int &n){
+    for(int i=n-1;i>0;i--){
+        for(int j=0;j<i;j++){
+            if(a[j]<a[j+1]){
+                int tmp=a[j];
+            a[j]=a[j+1];
+            a[j+1]=tmp;
+            }
+        }
+    }
+}
+void halfSort(int *&a, int &n){
+    int mid = n/2;
+    int *b=a+mid;
+    int end=n-mid;
+    ascendingArr(a,mid);
+    decendingArr(b,end);
+}
+void mergeArr()
 //Dem so lan theo Dieu Kien
 int check(int *&a, int n, bool func(int n)){
     int count=0; 
@@ -114,8 +132,8 @@ int main()
     cout << "Vi tri min: " << min(a,n) << endl;
     removeArr(a,n,x);
     xuatMang(a,n);
-    cout << "Mang tang dan: ";
-    ascendingArr(a,n);
+    cout << "Mang sau khi sap xep: \n";
+    halfSort(a,n);
     xuatMang(a,n);
     freeArr(a);
 }        
