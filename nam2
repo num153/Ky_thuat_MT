@@ -2,6 +2,34 @@
 #include <cmath>
 using namespace std;
 
+void nhapMang(int a[], int n);
+void xuatMang(int a[], int n);
+bool sqrtNum(int n);
+bool perfectNum(int n);
+bool am(int n){
+    return n<0?true:false;
+}
+//Dem so lan theo Dieu Kien
+int check(int a[], int n, bool func(int n)){
+    int count=0; 
+    for(int i=0;i<n;i++){
+        if(func(a[i])){
+           count ++;
+        }
+    }
+    return count;
+}
+
+int main()
+{
+    int a[10];int n;
+    cout << "Nhap n phan tu: "; cin >> n;
+    nhapMang(a,n);
+    xuatMang(a,n);
+    cout << "Cac so: " << check(a,n,am);
+    
+}        
+
 void nhapMang(int a[], int n){
     for(int i=0;i<n;i++){
         cout << "a[" << i << "]:"; cin >> a[i];
@@ -13,12 +41,14 @@ void xuatMang(int a[], int n){
     }
     cout << endl;
 }
-
-int main()
-{
-    int a[10];int n;
-    cout << "Nhap n phan tu: "; cin >> n;
-    nhapMang(a,n);
-    xuatMang(a,n);
-    
-}              
+bool sqrtNum(int n){
+    return (sqrt(n)*sqrt(n))==n;
+}
+bool perfectNum(int n){
+    int s=0;
+    for(int i =1;i <n; i++){
+        if(n%i==0)
+            s=s+i;
+    }
+    return s==n;
+}
