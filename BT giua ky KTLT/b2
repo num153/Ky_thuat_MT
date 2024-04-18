@@ -45,6 +45,26 @@ int *min(int *&a, int n){
         }
     }return NULL;
 }
+void removeArr(int *&a, int &n, int x){
+    cout << "Nhap vi tri xoa: "; cin >> x;
+    while(x>n){
+        cout << "Nhap lai!"; cin >> x;
+    }
+    for(int i=x;i<n;i++){
+        a[i]=a[i+1];
+    }n--;
+}
+void ascendingArr(int *&a, int &n){
+    for(int i=n-1;i>0;i--){
+        for(int j=0;j<i;j++){
+            if(a[j]>a[j+1]){
+                int tmp=a[j];
+            a[j]=a[j+1];
+            a[j+1]=tmp;
+            }
+        }
+    }
+}
 
 //Dem so lan theo Dieu Kien
 int check(int *&a, int n, bool func(int n)){
@@ -62,10 +82,11 @@ int *p_Position1(int *&a, int n, bool func(int n)){
     for(int i=0;i<n;i++){
         if(func(a[i])){
             p=i;
+            return &a[p];
             break; 
         }
     }
-    return &a[p];
+    return NULL;
 }
 //Tra ve dia chi cuoi cung theo Dieu Kien
 int *p_Position2(int *&a, int n, bool func(int n)){
@@ -73,15 +94,16 @@ int *p_Position2(int *&a, int n, bool func(int n)){
     for(int i=n-1;i>0;i--){
         if(func(a[i])){
             p=i;
+            return &a[p];
             break; 
         }
     }
-    return &a[p];
+    return NULL;
 }
 
 int main()
 {
-    int *a=NULL;int n;
+    int *a=NULL;int n,x;
     cout << "Nhap n phan tu: "; cin >> n;
     init(a,n);
     nhapMang(a,n);
@@ -90,6 +112,11 @@ int main()
     cout << "Cac so: " << check(a,n,primeNum) << endl;
     cout << "Vi tri: " << p_Position2(a,n,primeNum) << endl;
     cout << "Vi tri min: " << min(a,n) << endl;
+    removeArr(a,n,x);
+    xuatMang(a,n);
+    cout << "Mang tang dan: ";
+    ascendingArr(a,n);
+    xuatMang(a,n);
     freeArr(a);
 }        
 
