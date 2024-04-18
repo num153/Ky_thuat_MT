@@ -1,0 +1,117 @@
+#include<iostream>
+#include <cmath>
+using namespace std;
+void init(int *&a, int n){
+    a= new int[n];
+}
+void freeArr(int *a){
+    delete[]a;
+    a=nullptr;
+}
+void nhapMang(int *&a, int &n);
+void xuatMang(int *&a, int n);
+void p_xuatMang(int *&a, int n){
+    for(int i=0;i<n;i++){
+        cout << &a[i] << "\t";
+    }
+    cout << endl;
+}
+bool sqrtNum(int n);
+bool perfectNum(int n);
+bool am(int n){
+    return n<0?true:false;
+}
+bool duong(int n){
+    return n>0?true:false;
+}
+bool primeNum(int n){
+    if(n<2) return false;
+    else if(n>2){
+        if(n%2==0) return false;
+        for(int i =3; i<=sqrt(n);i++){
+            if(n%i==0)
+                return false;
+        }
+    }
+    return true;
+}
+int *min(int *&a, int n){
+    int p_min=0;
+    for(int i=0;i<n;i++){
+        if(a[i]<a[p_min]){
+            p_min=i;
+            return &a[p_min];
+            break;
+        }
+    }return NULL;
+}
+
+//Dem so lan theo Dieu Kien
+int check(int *&a, int n, bool func(int n)){
+    int count=0; 
+    for(int i=0;i<n;i++){
+        if(func(a[i])){
+           count ++;
+        }
+    }
+    return count;
+}
+//Tra ve dia chi dau tien theo Dieu Kien
+int *p_Position1(int *&a, int n, bool func(int n)){
+    int p=NULL;
+    for(int i=0;i<n;i++){
+        if(func(a[i])){
+            p=i;
+            break; 
+        }
+    }
+    return &a[p];
+}
+//Tra ve dia chi cuoi cung theo Dieu Kien
+int *p_Position2(int *&a, int n, bool func(int n)){
+    int p=0;
+    for(int i=n-1;i>0;i--){
+        if(func(a[i])){
+            p=i;
+            break; 
+        }
+    }
+    return &a[p];
+}
+
+int main()
+{
+    int *a=NULL;int n;
+    cout << "Nhap n phan tu: "; cin >> n;
+    init(a,n);
+    nhapMang(a,n);
+    xuatMang(a,n);
+    p_xuatMang(a,n);
+    cout << "Cac so: " << check(a,n,primeNum) << endl;
+    cout << "Vi tri: " << p_Position2(a,n,primeNum) << endl;
+    cout << "Vi tri min: " << min(a,n) << endl;
+    freeArr(a);
+}        
+
+void nhapMang(int *&a, int &n){
+    for(int i=0;i<n;i++){
+        cout << "a[" << i << "]:"; cin >> a[i];
+    }
+}
+void xuatMang(int *&a, int n){
+    for(int i=0;i<n;i++){
+        cout << a[i] << "\t";
+    }
+    cout << endl;
+}
+bool sqrtNum(int n){
+    return (sqrt(n)*sqrt(n))==n;
+}
+bool perfectNum(int n){
+    int s=0;
+    for(int i =1;i <n; i++){
+        if(n%i==0)
+            s=s+i;
+    }
+    return s==n;
+}
