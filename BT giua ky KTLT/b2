@@ -54,7 +54,7 @@ void removeArr(int *&a, int &n, int x){
         a[i]=a[i+1];
     }n--;
 }
-void ascendingArr(int *&a, int &n){
+void ascendingArr(int *&a, int n){
     for(int i=n-1;i>0;i--){
         for(int j=0;j<i;j++){
             if(a[j]>a[j+1]){
@@ -65,7 +65,7 @@ void ascendingArr(int *&a, int &n){
         }
     }
 }
-void decendingArr(int *&a, int &n){
+void decendingArr(int *&a, int n){
     for(int i=n-1;i>0;i--){
         for(int j=0;j<i;j++){
             if(a[j]<a[j+1]){
@@ -83,7 +83,18 @@ void halfSort(int *&a, int &n){
     ascendingArr(a,mid);
     decendingArr(b,end);
 }
-void mergeArr()
+int* mergeArr(int *&a,int *&b,int n, int m){ //Tao mang moi roi thi nho co tra ve chu k dung void duoc nghe chua e 
+    int *c;
+    init(c,m+n);
+    int l=0;
+    for(int i=0;i<n;i++){
+        c[l++]=a[i];
+    }
+    for(int i=0;i<m;i++){
+        c[l++]=b[i];
+    }
+    return c;
+} 
 //Dem so lan theo Dieu Kien
 int check(int *&a, int n, bool func(int n)){
     int count=0; 
@@ -121,12 +132,14 @@ int *p_Position2(int *&a, int n, bool func(int n)){
 
 int main()
 {
-    int *a=NULL;int n,x;
+    int *a=NULL;int *b=NULL;int *c=NULL;
+    int n,m,l,x;
     cout << "Nhap n phan tu: "; cin >> n;
     init(a,n);
     nhapMang(a,n);
+    ascendingArr(a,n);
     xuatMang(a,n);
-    p_xuatMang(a,n);
+    /*p_xuatMang(a,n);
     cout << "Cac so: " << check(a,n,primeNum) << endl;
     cout << "Vi tri: " << p_Position2(a,n,primeNum) << endl;
     cout << "Vi tri min: " << min(a,n) << endl;
@@ -134,8 +147,16 @@ int main()
     xuatMang(a,n);
     cout << "Mang sau khi sap xep: \n";
     halfSort(a,n);
-    xuatMang(a,n);
-    freeArr(a);
+    xuatMang(a,n);*/
+    cout << "Nhap m phan tu: "; cin >> m;
+    init(b,m);
+    nhapMang(b,m);
+    ascendingArr(b,m);
+    xuatMang(b,m);
+    c = mergeArr(a,b,m,n);
+    ascendingArr(c,m+n);
+    xuatMang(c,m+n);
+    freeArr(a);freeArr(b);freeArr(c);
 }        
 
 void nhapMang(int *&a, int &n){
