@@ -8,11 +8,15 @@ void init(int**& a, int& r, int& c) {
         a[i] = new int[c];
     }
 }
-void freeArr(int**& a, int r) {
+void freeArr2(int**& a, int r) {
     for (int i = 0;i < r;i++) {
         delete[] a[i];
         a[i] = nullptr;
     }
+    delete[]a;
+    a = nullptr;
+}
+void freeArr1(int*& a) {
     delete[]a;
     a = nullptr;
 }
@@ -55,7 +59,7 @@ bool primeNum(int n) {
 bool oddNum(int n) {
     return n % 2 != 0;
 }
-//Xuat theo dieu kien
+//Xuat theo dieu kien (su dung flag)
 void xuatDk(int**& a, int r, int c, bool func(int n)) {
     bool flag = false;
     for (int i = 0;i < r;i++) {
@@ -69,7 +73,7 @@ void xuatDk(int**& a, int r, int c, bool func(int n)) {
         cout << "Khong co\n";
     }
 }
-//Vi tri dau theo dieu kien
+//Vi tri dau 
 int *xuatDau(int**& a, int r, int c, bool func(int n)) {
     int pi = NULL, pj = NULL;
     for (int i = 0;i < r;i++) {
@@ -84,9 +88,60 @@ int *xuatDau(int**& a, int r, int c, bool func(int n)) {
     }return NULL;
 
 }
+void xuatCot(int**& a, int r, int c,int &x) {
+    cout << "Nhap cot: ";cin >> x;
+    int* p_cot = new int[r];
+    for (int i = 0;i < r;i++) {
+        p_cot[i] = a[i][x];
+    }
+    for (int i = 0;i < r;i++) {
+        cout << p_cot[i] << "\n";
+    }
+    freeArr1(p_cot);
+}
+void xuatDong(int**& a, int r, int c, int& x) {
+    cout << "Nhap dong: ";cin >> x;
+    int* p_dong = new int[c];
+    for (int i = 0;i < c;i++) {
+        p_dong[i] = a[x][i];
+    }
+    for (int i = 0;i < c;i++) {
+        cout << p_dong[i] << "\t";
+    }
+    freeArr1(p_dong);
+}
+void xuatCotchan(int**& a, int r, int c, int& x,bool func(int n)) {
+    int* p_cot = new int[r];
+    for (int i = 0;i < r;i++) {
+        p_cot[i] = a[i][x];
+    }
+    bool flag = false;
+    cout << "So chan trong cot " << x << ": ";
+    for (int i = 0;i < r;i++) {
+        if (!func(p_cot[i])) {
+            cout << p_cot[i] << "\n";
+            flag = true;
+        }
+    }if (flag == false) {
+        cout << "k co\n";
+    }
+    freeArr1(p_cot);
+}
+void xuatCotgiam(int**& a, int r, int c, int& x) {
+    int* p_cot = new int[r];
+    for (int i = 0;i < r;i++) {
+        p_cot[i] = a[i][x]-1;
+    }
+    cout << "Cot " << x << " sau khi -1: \n";
+    for (int i = 0;i < r;i++) {
+        cout << p_cot[i] << "\n";
+    }
+    freeArr1(p_cot);
+}
 
 int main() {
     int** a = NULL;int r;int c;
+    int x,y;
     cout << "Nhap dong: ";cin >> r;
     cout << "Nhap cot: ";cin >> c;
     init(a, r, c);
@@ -95,7 +150,11 @@ int main() {
     cout << "Tong: " << tong(a, r, c) << endl;
     cout << "So nguyen to: "; xuatDk(a, r, c, primeNum);
     cout << "\nSo le dau: "<< xuatDau(a, r, c, oddNum) << endl;
-    freeArr(a, r);
+    xuatCot(a, r, c, x);
+    xuatDong(a, r, c, y); cout << endl;
+    xuatCotchan(a, r, c, x,oddNum);
+    xuatCotgiam(a, r, c, x);
+    freeArr2(a, r);
     system("pause");
     return 1;
 }
