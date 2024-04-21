@@ -2,54 +2,87 @@
 #include <cmath>
 using namespace std;
 
-void init(int *&a, int n){
-    a = new int [n];
-}
-void freeArr(int *&a){
-    delete []a; 
+void freeA(int *a){
+    delete[]a; 
     a=nullptr;
 }
-
-void nhapHeso(int *&a, int &n){
-    for(int i=n;i>=0;i--){
-        cout << "x^" << i << ": ";
-        cin >> a[i];
-    }
+void init(int *&a, int n){
+    a = new int [n+1];
 }
-void xuat(int *&a, int n){
+void xuat(int*& a, int n){
     cout << "f(x): ";
-    for(int i=n;i>=0;i--){
-        if(i>0){
+    for (int i = n; i >=0; i--)
+	{
+	    if(i>0){
           cout << a[i] << "x^" << i << " + ";  
         }
         else cout << a[i] << endl;
+	}
+}
+
+void nhapHeso(int*& a, int n) {
+	for (int i = n; i >=0; i--)
+	{
+		cout << "Nhap he so cua x^" << i << ": ";
+		cin >> a[i];
+	}
+	cout << endl;
+}
+
+int tinhGiaTri(int* a, int n, int &x) {
+	cout << "Nhap x: ";
+	cin >> x;
+	int giatri = 0;
+	for (int i = n; i >=0; i--)
+	{
+		giatri += a[i] * pow(x, i);
+	}
+	cout << "f(" << x << "): ";
+	return giatri;
+}
+
+void tong2Dathuc(int *a, int n, int*b, int m){
+    if(n>m){
+        int *c =new int [n+1];
+        for(int i=m;i>=0;i--){
+            c[i]=a[i]+b[i];
+        }
+        for(int i=n;i>m;i--){
+            c[i]=a[i];
+        }
+        xuat(c,n);
+        freeA(c);
+    }
+    else {
+        int *c =new int [m+1];
+        for(int i=n;i>=0;i--){
+            c[i]=a[i]+b[i];
+        }
+        for(int i=m;i>n;i--){
+            c[i]=b[i];
+        }xuat(c,m);
+        freeA(c);
     }
 }
-double tongFx(int *&a, int &n,double &x){
-    double fx=0;
-    for(int i=n;i>=0;i--){
-        fx=fx+a[i]*pow(x,i);
-    }
-    return fx;
-}
-double tinh2Fx(int *&a, int &n,double &x,int *&b, int &m,double &y)
 
 
-int main(){
-    int *a=NULL,*b=NULL;int n,m; double x;
+int main()
+{
+    int n,m,x;
+    int *a=NULL;int*b=NULL;
     cout << "Nhap bac n: "; cin >> n;
     init(a,n);
     nhapHeso(a,n);
     xuat(a,n);
-    cout << "Nhap x:"; cin >> x;
-    cout << "Tong f(" << x << "): " << tongFx(a,n,x) << endl;
-    cout << "Nhap bac m: "; cin >> m;
+    //Ting f(x) tai x
+    cout << tinhGiaTri(a,n,x);
+    //Ting tong 2 da thuc
+    cout << "\nNhap bac m: "; cin >> m;
     init(b,m);
     nhapHeso(b,m);
     xuat(b,m);
-    
-    freeArr(a);
-    freeArr(b);
-    system("pause");
-    return 1;
+    cout << "Tong hai ham: ";
+    tong2Dathuc(a,n,b,m);
+    freeA(a);freeA(b);
+	return 0;
 }
