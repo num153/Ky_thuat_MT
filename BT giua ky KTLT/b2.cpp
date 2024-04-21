@@ -153,7 +153,7 @@ int main()
     nhapMang(b,m);
     ascendingArr(b,m);
     xuatMang(b,m);
-    c = mergeArr(a,b,m,n);
+    c = mergeArr(a,b,n,m);
     ascendingArr(c,m+n);
     xuatMang(c,m+n);
     freeArr(a);freeArr(b);freeArr(c);
