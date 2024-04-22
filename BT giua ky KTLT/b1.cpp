@@ -1,35 +1,52 @@
+
+// Online C++ Compiler - Build, Compile and Run your C++ programs online in your favorite browser
+
 #include<iostream>
 #include <cmath>
+
 using namespace std;
 
-void nhap(float &a, float &b, float &c){
-    cout << "Nhap he so cho phuong trinh: \n"; cout << "a: "; cin >> a;
-    cout << "\nb: "; cin >> b; cout << "\nc: ";cin >> c;
-    cout << "PT: " << a << "x^2 + " << b << "x + " << c << endl;
+void nhapHeso(float &a,float &b,float &c){
+    cout << "Nhap a: ";cin >> a;
+    cout << "Nhap b: ";cin >> b;
+    cout << "Nhap c: ";cin >> c;
+    cout << "\nPT: " << a <<"x^2 + " <<b<<"x + " << c << " = 0" << endl;
 }
-void tinh(float a, float b, float c){
-    float delta = b*b - 4*a*c;
-    if (delta < 0) {
-        cout << " vo ";
-    } 
-    else if (delta == 0) {
-        float x = (-b / (2 * a));
-        cout << "Phuong trinh co nghiem kep:\n";
-        cout << "x = " << x << "\n";
-    } 
-    else {
-        float x1 = (-b + sqrt(delta)) / (2 * a);
-        float x2 = (-b - sqrt(delta)) / (2 * a);
-        cout << "Phuong trinh co 2 nghiem phan biet:\n";
-        cout << "x1 = " << x1 << "\n";
-        cout << "x2 = " << x2 << "\n";
-         }
+void tinh(float &a,float &b,float &c, float delta=0.0){
+    int x,x1,x2;
+    if(a==0){
+        if(b==0 && c!=0){
+            cout << "Vo n\n";
+        }
+        else if(b==0 && c==0){
+            cout << "vo so n\n";
+        }
+        else{
+            x=-c/b;
+            cout << "co n x=" << x << endl;
+        }
+    }
+    else{
+        delta=b*b - 4*a*c;
+        if(delta<0){
+            cout << "vo n\n";
+        }
+        else if(delta ==0){
+            x=-b/(2*a);
+            cout << "N kep x=" << x << endl;
+        }
+        else{
+            x1=(-b-sqrt(delta))/(2*a);
+            x2=(-b+sqrt(delta))/(2*a);
+            cout << "x1= " << x1 << endl;
+            cout << "x2= " << x2 << endl;
+        }
+    }
 }
 
 int main()
 {
-    float a, b, c, delta;
-    nhap(a,b,c);
-    tinh(a,b,c);
-    
-}              
+   float a,b,c ;
+   nhapHeso(a,b,c);
+   tinh(a,b,c);
+}
