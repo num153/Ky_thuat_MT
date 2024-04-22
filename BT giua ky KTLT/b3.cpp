@@ -70,19 +70,46 @@ int main()
 {
     int n,m,x;
     int *a=NULL;int*b=NULL;
-    cout << "Nhap bac n: "; cin >> n;
-    init(a,n);
-    nhapHeso(a,n);
-    xuat(a,n);
-    //Ting f(x) tai x
-    cout << tinhGiaTri(a,n,x);
-    //Ting tong 2 da thuc
-    cout << "\nNhap bac m: "; cin >> m;
-    init(b,m);
-    nhapHeso(b,m);
-    xuat(b,m);
-    cout << "Tong hai ham: ";
-    tong2Dathuc(a,n,b,m);
+    int chon;
+    bool f=false;
+    do{
+        cout << "========MENU=========" << endl;
+        cout << "1.Nhap he so\n2.Xuat\n3.Tinh gia tri\n4.Tong 2 da thuc\n0.Thoat\n";
+        cout << "Ban chon: "; cin >> chon;
+        cout << "\n=====================\n";
+        switch(chon){
+            case 1:
+            cout << "nhap n: "; cin >> n;
+                init(a,n);
+                nhapHeso(a,n);
+                f=true;
+                break;
+            case 2:
+                if(f==true){
+                   xuat(a,n); 
+                }
+                else cout << "chua co mang\n";
+                break;
+            case 3:
+                if(f==true){
+                   cout << tinhGiaTri(a,n,x) << endl; 
+                }
+                else cout << "chua co mang\n";
+                break;
+            case 4:
+                if(f==true){
+                   cout << "\nNhap bac m: "; cin >> m;
+                    init(b,m);
+                    nhapHeso(b,m);
+                    xuat(b,m);
+                    cout << "Tong hai ham: ";
+                    tong2Dathuc(a,n,b,m);
+                    break;
+                }
+                else cout << "chua co mang\n";
+                break;    
+        }
+    }while(chon!=0);
     freeA(a);freeA(b);
 	return 0;
 }
