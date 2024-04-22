@@ -13,7 +13,7 @@ void nhapHeso(float &a,float &b,float &c){
     cout << "\nPT: " << a <<"x^2 + " <<b<<"x + " << c << " = 0" << endl;
 }
 void tinh(float &a,float &b,float &c, float delta=0.0){
-    int x,x1,x2;
+    float x,x1,x2;
     if(a==0){
         if(b==0 && c!=0){
             cout << "Vo n\n";
