@@ -54,7 +54,7 @@ void removeArr(int*& a, int& n, int &x) {
         a[i] = a[i + 1];
     }n--;
 }
-void addArr(int*& a, int& n, int &x) {
+void addArr(int*& a, int& n, int &x, int val) {
      for(int i = n; i > x; i--){
         a[i] = a[i-1];
     }
@@ -202,6 +202,7 @@ int main()
             cout << "nho nhat cuoi mang";
         case 12:
             cout << "xoa phan tu"; removeArr(a, n, x);
+            cout << " them"; addArr(a, n, x,99);
             break;
         case 13:
             cout << "giam dan: "; decendingArr(a, n); xuatMang(a, n);
