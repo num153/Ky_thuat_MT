@@ -50,7 +50,7 @@ void removeArr(int*& a, int& n, int &x) {
     while (x > n) {
         cout << "Nhap lai!"; cin >> x;
     }
-    for (int i = x;i < n;i++) {
+    for (int i = x;i < n-1;i++) {
         a[i] = a[i + 1];
     }n--;
 }
