@@ -98,3 +98,49 @@ int main() {
     xuat(ds,n);
     return 0;
 }
+
+=============================CLASS=============================================================
+
+
+// Online C++ Compiler - Build, Compile and Run your C++ programs online in your favorite browser
+
+#include<iostream>
+#include <string>
+using namespace std;
+
+class Cat{
+    private:
+    string name;
+    string color;
+    string toy;
+    public:
+    void print(){
+        cout << "name: " << name << endl;
+        cout << "color: " << color << endl;
+        cout << "toy: " << toy << endl;
+    }
+    //default constructor
+    Cat(){
+        name = "x";
+        color = "x";
+        toy = "x";
+    }
+    //constructor 3 argument
+    Cat(string n, string c, string t);
+};
+    Cat::Cat(string n, string c, string t){
+        name = n;
+        color = c;
+        toy = t;
+    }
+
+int main()
+{   Cat cat1;
+    cout << "\n====================" << endl;
+    cat1.print();
+    Cat cat2("Nam","Blue","HEH");
+    cout << "\n====================" << endl;
+    cat2.print();
+    return 0;
+}
+
