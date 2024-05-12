@@ -57,51 +57,6 @@ int main() {
 
 ==========================================================================================
 
-// Online C++ compiler to run C++ program online
-#include <iostream>
-#include <string>
-using namespace std;
-struct Date{
-    int ngay,thang,nam;
-};
-struct Nhanvien{
-    string hoten;
-    int tuoi;
-    Date date;
-};
-
-void nhap(Nhanvien ds[],int &n){
-    cout << "Nhap sl nhan vien: "; cin >> n;
-    cin.ignore();
-    for(int i=0;i<n;i++){
-        cout << "\nNhap thong tin nhan vien thu " << i+1 << endl;
-        cout << "Ten: "; getline(cin, ds[i].hoten); 
-        cout << "Tuoi: "; cin >> ds[i].tuoi;
-        cout << "Ngay: "; cin >> ds[i].date.ngay;
-        cout << "Thang: "; cin >> ds[i].date.thang;
-        cout << "Nam: "; cin >> ds[i].date.nam;
-        cin.ignore();
-    }
-}
-void xuat(Nhanvien ds[],int n){
-        for(int i=0;i<n;i++){
-        cout << "\n\tNhan vien " << i+1 << endl;
-        cout << "Ten: " << ds[i].hoten << endl;
-        cout << "Tuoi: " << ds[i].tuoi << endl;
-        cout << "Date: " << ds[i].date.ngay << "/" << ds[i].date.thang << "/" << ds[i].date.nam;
-    }
-}
-
-int main() {
-    Nhanvien ds[10];int n;
-    nhap(ds,n);
-    xuat(ds,n);
-    return 0;
-}
-
-=============================CLASS=============================================================
-
-
 // Online C++ Compiler - Build, Compile and Run your C++ programs online in your favorite browser
 
 #include<iostream>
@@ -127,6 +82,10 @@ class Cat{
     }
     //constructor 3 argument
     Cat(string n, string c, string t);
+    //destructor
+    ~Cat(){
+        cout << "Huy" << endl;
+    }
 };
     Cat::Cat(string n, string c, string t){
         name = n;
@@ -143,4 +102,3 @@ int main()
     cat2.print();
     return 0;
 }
-
