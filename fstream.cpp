@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
 int main()
@@ -13,14 +14,17 @@ int main()
         cout << "K mo file duoc";
         return 1;
     }
-    int a=0,b=0,c=0;
+    string x;
+    getline(inFile, x); //lay khoang trang luon
+    cout << x;
+    /*int a=0,b=0,c=0;
     while(true){
         inFile >> a >> b >> c;
-        if(inFile.eof()) break;
+        if(inFile.eof()) break; //ham end of file
         else{
-            cout << a << b << c << endl;
+            cout << a << b << c << endl; // 1 2 3 /n 4 5 6
         }
-    }
+    }*/
     inFile.close();
     return 0;
 }
