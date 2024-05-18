@@ -18,7 +18,7 @@ void xoa2Space(string &s){
     while(!s.empty() && i<s.length()){
         if(s[i] == ' ' && s[i+1] == ' ')
         {
-        s.erase(i,1);
+        s.erase(i,1); //Vi tri se tu don ve phia truoc va cap nhat
         }
         else i++;
     }
