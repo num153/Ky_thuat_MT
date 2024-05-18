@@ -47,6 +47,31 @@ void tachToken(string &s, char &kitu){
         p = strtok(NULL,&kitu); //tai sao lai them may cai & ???
     }
 }
+void demCau(string &s){
+    int dem=0;
+    for(char c: s){
+        if(c == '.' || c == '!' ||c == '?'){
+            dem++;
+        }
+    }
+    cout << "So cau: " << dem;
+}
+void demDaucau(string &s){
+    int dem =0;
+    
+}
+void demSotu(string &s){
+    int dem=0;
+    if(s[0] != ' '){
+        dem ++;
+    }
+    for(int i=0;i<s.length();i++){
+        if(s[i] == ' ' && s[i+1] != ' '){
+            dem++;
+        }
+    }
+    cout << "So tu: " << dem;
+}
 void check(string s, bool func(string s)){
     if(func(s)){
         cout << "Co\n";
@@ -60,6 +85,7 @@ int main()
     check(str,isNum);
     xoaSpaceDauCuoiGiua(str);
     cout << str << endl;
-    tachToken(str,x);
+    demCau(str);
+    demSotu(str);
     return 0;
 }
