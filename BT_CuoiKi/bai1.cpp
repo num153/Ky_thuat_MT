@@ -63,12 +63,12 @@ void demDaucau(string &s){
 void demSotu(string &s){
     int dem=0;
     if(s[0] != ' '){
-        dem ++;
+        dem=1;
     }
-    for(int i=0;i<s.length();i++){
-        if(s[i] == ' ' && s[i+1] != ' '){
-            dem++;
-        }
+    for(int i=1;i<s.length();i++){
+        if(s[i-1] == ' ' && s[i] != ' '){
+            dem++;   
+    }
     }
     cout << "So tu: " << dem;
 }
@@ -83,7 +83,6 @@ int main()
     string str; char x;
     cout << "Nhap chuoi: "; getline(cin, str);
     check(str,isNum);
-    xoaSpaceDauCuoiGiua(str);
     cout << str << endl;
     demCau(str);
     demSotu(str);
