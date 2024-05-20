@@ -12,7 +12,7 @@ void ghiFile(int arr[], int n, const char* tenFile){
         for(int i=0;i<n;i++){
             outFile << arr[i] << endl;
         }
-        outFile.close();
+        outFile.close(); //nho dong file nhee
     }else{
         cout << "Khong the mo file!\n";
     }
