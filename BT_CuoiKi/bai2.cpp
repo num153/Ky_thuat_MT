@@ -19,7 +19,7 @@ void ghiFile(int arr[], int n, const char* tenFile){
 }
 void docFile(int arr[], int n, const char* tenFile){
     ifstream inFile;
-    inFile("file.txt");
+    inFile.open("file.txt");
     if(inFile.is_open()){
         for(int i=0;i<n;i++){
             inFile >> arr[i];
