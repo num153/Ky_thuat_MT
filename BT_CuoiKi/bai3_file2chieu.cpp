@@ -79,16 +79,15 @@ int timMax(int **&a, int r, int c,int i, int j, int max=0){
     if(a[i][j] > max){
         max = a[i][j];
     }
-    if(j<c-1){
-        return timMax(a,r,c,i,j+1);
+    if(j<c-1){ // vi du 4 cot, j chay toi 3 roi de qui tang j len 4 la dung hop li 
+        return timMax(a,r,c,i,j+1,max); //dung quen max, neu k se bi reset ve 0 o moi lan goi moi
     }else{
-        return timMax(a,r,c,i+1,0);
+        return timMax(a,r,c,i+1,0,max); //xuong dong moi, cot 0
     }
 }
 int main()
 {
     int **a=NULL; int r,c,i,j;
-    int max=0;
     cout << "Nhap r: "; cin >> r;
     cout << "Nhap c: ";cin >> c;
     init(a,r,c);
@@ -97,7 +96,7 @@ int main()
     docFile(a,r,c,"file.txt");
     xuatArr(a,r,c);
     tinhTong(a,r,c);
-    cout << "Gia tri max: " << timMax(a,r,c,i,j,max);
+    cout << "Gia tri max: " << timMax(a,r,c,i,j);
     del(a,r);
     
     return 0;
