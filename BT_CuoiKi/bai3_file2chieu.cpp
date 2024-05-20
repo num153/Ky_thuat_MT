@@ -63,9 +63,32 @@ void docFile(int **&a, int r,int c, const char* tenfile){
         cout << "Khong the mo file\n";
     }
 }
+void tinhTong(int **&a, int r, int c){
+    int s=0;
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            s+=a[i][j];
+        }
+    }
+    cout << "Tong: " << s << endl;
+}
+int timMax(int **&a, int r, int c,int i, int j, int max=0){
+    if(i==r){
+        return max;
+    }
+    if(a[i][j] > max){
+        max = a[i][j];
+    }
+    if(j<c-1){
+        return timMax(a,r,c,i,j+1);
+    }else{
+        return timMax(a,r,c,i+1,0);
+    }
+}
 int main()
 {
-    int **a=NULL; int r,c;
+    int **a=NULL; int r,c,i,j;
+    int max=0;
     cout << "Nhap r: "; cin >> r;
     cout << "Nhap c: ";cin >> c;
     init(a,r,c);
@@ -73,6 +96,8 @@ int main()
     ghiFile(a,r,c,"file.txt");
     docFile(a,r,c,"file.txt");
     xuatArr(a,r,c);
+    tinhTong(a,r,c);
+    cout << "Gia tri max: " << timMax(a,r,c,i,j,max);
     del(a,r);
     
     return 0;
