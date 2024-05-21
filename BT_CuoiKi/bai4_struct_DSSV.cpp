@@ -48,13 +48,7 @@ void del(DSSV& soluong) {
 
 void docDSSV(DSSV& soluong) {
 	ifstream inFile;
-	inFile.open("dssv.txt"); 
-  /*
-    3
-    Dang Phuong Nam#2352050#DH23IT#5.55
-    Son Tung#0302004#DD55IT#9.99
-    Anh Tuan J97#0400043#DH23HEHE#5.5
-  */
+	inFile.open("dssv.txt"); //Dang Phuong Nam#2352050#DH23IT#5.55
 	if (inFile.is_open()) {
 		//dong dau cua file la so luong nen cap nhat vao bien n
 		inFile >> soluong.n;
@@ -95,12 +89,39 @@ void xuatDSSV(DSSV& soluong) {
 	}
 }
 
+//===================DEM==================
+int demMaLop(const DSSV& soluong, char* malop) {
+	int dem = 0;
+	for (int i = 0;i < soluong.n;i++) {
+		if (strcmp(soluong.ds[i].lop, malop)) {
+			dem++;
+		}
+	}
+	return dem;
+}
+int demSVlon8(const DSSV& soluong) {
+	int dem = 0;
+	for (int i = 0;i < soluong.n;i++) {
+		if (soluong.ds[i].dtb >=8.0) {
+			dem++;
+		}
+	}
+	return dem;
+}
+//===================SAP XEP================
+void swap(Sinhvien& sv1, Sinhvien& sv2) {
+	Sinhvien tmp;
+	tmp = sv1;
+	sv1 = sv2;
+	sv2 = tmp;
+}
 int main() {
 	DSSV a;
 	a.ds = NULL;
 	a.n = 0;
 	docDSSV(a);
 	xuatDSSV(a);
+	del(a);
 	system("pause");
 	return 0;
 }
