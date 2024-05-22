@@ -1,6 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
+#include<cstring>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 struct Sinhvien {
@@ -80,12 +83,13 @@ void xuat1SV(Sinhvien sv) {
 	cout << "Ten: " << sv.ten << endl;
 	cout << "MSSV: " << sv.mssv << endl;
 	cout << "Lop: " << sv.lop << endl;
-	cout << "Diem TB: " << sv.dtb << endl;
+	cout << "Diem TB: " << sv.dtb;
 }
 void xuatDSSV(DSSV& soluong) {
 	for (int i = 0;i < soluong.n;i++) {
 		cout << "\n=======Sinh vien thu " << i + 1 << " =======\n";
 		xuat1SV(soluong.ds[i]);
+		cout << endl;
 	}
 }
 
@@ -139,15 +143,81 @@ void sapxep(DSSV soluong, int funct(Sinhvien, Sinhvien)) {
 	xuatDSSV(soluong);
 }
 //===================Xoa Them================
+void xoa1SV(DSSV& soluong, int &vt) {
+	cout << "Xoa sinh vien thu: "; cin >> vt;
+	for (int i = 0;i < soluong.n;i++) {
+		if (i + 1 == vt) {
+			for (int j = i;j < soluong.n - 1;j++) {
+				soluong.ds[j] = soluong.ds[j + 1];
+			}
+		soluong.n--;
+		}
+	}
+}
+void themSV(DSSV& soluong, Sinhvien& svmoi) {
+	if (soluong.ds == NULL) {
+		soluong.n = 1;
+		soluong.ds = new Sinhvien[soluong.n];
+		soluong.ds[0] = svmoi;
+	}
+	else {
+		Sinhvien* tam = soluong.ds;
+		soluong.ds = new Sinhvien[soluong.n+1];
+		for (int i = 0;i < soluong.n;i++) {
+			soluong.ds[i] = tam[i];
+		}
+		soluong.ds[soluong.n] = svmoi;
+		soluong.n++;
+		delete[] tam;
+	}
+}
+void update(Sinhvien& sv) {
+	char lop_moi[10];
+	cout << "Nhap lop moi: ";
+	cin >> lop_moi;
+	strcpy(sv.lop, lop_moi);
+}
+void xuatDSHB(DSSV soluong) {
+	vector<Sinhvien> hb; //vector <kieu_du_lieu> ten_mang
+	ofstream outFile;
+	outFile.open("dshb.txt");
+	for (int i = 0;i < soluong.n;i++) {
+		if (soluong.ds[i].dtb >= 8.0) {
+			hb.push_back(soluong.ds[i]);
+		}
+	}
+	if (outFile.is_open()) {
+			outFile << hb.size() << endl;
+			for (int i = 0;i < hb.size();i++) {
+				outFile << hb[i].ten << "#";
+				outFile << hb[i].mssv << "#";
+				outFile << hb[i].lop << "#";
+				outFile << hb[i].dtb << endl;
+			}
+	outFile.close();
+	}
+	else {
+		cout << "Khong the mo file\n";
+	}
+}
 
 int main() {
 	DSSV a;
 	a.ds = NULL;
 	a.n = 0;
+	int vt;
+	int x;
+	Sinhvien svm = { 2505,"Son Goku","DH23IM",8.8 };
 	docDSSV(a);
 	xuatDSSV(a);
-	cout << "Sap xep mssv giam dan: \n";
+	/*cout << "\nSap xep mssv giam dan: \n";
 	sapxep(a, mssvDesc); 
+	xoa1SV(a, vt);*/
+	themSV(a, svm);
+	cout << "Update sinh vien thu may: "; cin >> x;
+	update(a.ds[x-1]);
+	xuatDSSV(a);
+	xuatDSHB(a);
 	del(a);
 	system("pause");
 	return 0;
