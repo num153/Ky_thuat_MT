@@ -115,12 +115,39 @@ void swap(Sinhvien& sv1, Sinhvien& sv2) {
 	sv1 = sv2;
 	sv2 = tmp;
 }
+int mssvDesc(Sinhvien sv1, Sinhvien sv2) {
+	if (sv1.mssv > sv2.mssv) {
+		return 1;
+	}
+	if (sv1.mssv < sv2.mssv) {
+		return -1;
+	}
+	return 0;
+}
+int mssvAsc(Sinhvien sv1, Sinhvien sv2) {
+	return -mssvDesc(sv1, sv2);
+}
+
+void sapxep(DSSV soluong, int funct(Sinhvien, Sinhvien)) {
+	for (int i = 0;i < soluong.n - 1;i++) {
+		for (int j = i + 1;j < soluong.n;j++) {
+			if (funct(soluong.ds[i], soluong.ds[j]) < 0) {
+				swap(soluong.ds[i], soluong.ds[j]);
+			}
+		}
+	}
+	xuatDSSV(soluong);
+}
+//===================Xoa Them================
+
 int main() {
 	DSSV a;
 	a.ds = NULL;
 	a.n = 0;
 	docDSSV(a);
 	xuatDSSV(a);
+	cout << "Sap xep mssv giam dan: \n";
+	sapxep(a, mssvDesc); 
 	del(a);
 	system("pause");
 	return 0;
