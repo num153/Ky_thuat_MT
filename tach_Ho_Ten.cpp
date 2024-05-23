@@ -17,7 +17,7 @@ void tachHoTen(string& name) {
         chuoi.push_back(string(tach));
         tach = strtok(NULL, " ");
     }
-    if (chuoi.size() > 2) {
+    if (chuoi.size() >= 2) {
         cout << "Ho: " << chuoi.front() << endl;
         cout << "Ho lot: ";
         for (int i = 1;i < chuoi.size() - 1;i++) {
