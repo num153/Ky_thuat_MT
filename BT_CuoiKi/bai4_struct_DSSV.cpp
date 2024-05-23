@@ -200,6 +200,22 @@ void xuatDSHB(DSSV soluong) {
 		cout << "Khong the mo file\n";
 	}
 }
+string getFirstName(const string& fullName) {
+	int pos = fullName.find_last_of(' ');
+	if (pos == string::npos) {
+		return fullName; // neu k co space thi la fullname
+	}
+	return fullName.substr(pos + 1);//substr tach string ra
+}
+void xuatDSSVTheoTen(const DSSV& soluong, const string& ten) {
+	cout << "Sinh vien co ten: " << ten << "la: " << endl;
+	for (int i = 0; i < soluong.n; i++) {
+		if (getFirstName(soluong.ds[i].ten) == ten) {
+			xuat1SV(soluong.ds[i]);
+			cout << endl;
+		}
+	}
+}
 
 int main() {
 	DSSV a;
@@ -218,6 +234,7 @@ int main() {
 	update(a.ds[x-1]);
 	xuatDSSV(a);
 	xuatDSHB(a);
+	xuatDSSVTheoTen(a, "Goku");
 	del(a);
 	system("pause");
 	return 0;
