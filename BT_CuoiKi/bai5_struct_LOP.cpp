@@ -2,6 +2,7 @@
 #include<cstring>
 #include<string>
 #include<vector>
+#include<fstream>
 using namespace std;
 struct Date {
 	int ngay, thang, nam;
@@ -111,9 +112,38 @@ void xuatDSlop(DSlop& dsl) {
 		xuat1lop(&dsl.ds[i]); //dsl.ds[i]
 	}
 }
+void docFile(DSlop& dsl) {
+	ifstream inFile;
+	inFile.open("dslop.txt");
+	if (inFile.is_open()) {
+		inFile.ignore(2);
+		while(!inFile.eof()) {
+			Lop l; //IM22#DH23IM02#He thong thong tin#22 / 05 / 2022
+			inFile.getline(l.malop, 5, '#');
+			inFile.getline(l.tenlop, 9, '#');
+			getline(inFile,l.tenkhoa,'#');
+			inFile >> l.sosv;
+			inFile.ignore();
+			inFile >> l.ngaykg.ngay;inFile.ignore();
+			inFile >> l.ngaykg.thang;inFile.ignore();
+			inFile >> l.ngaykg.nam;inFile.ignore();
+			if (checkDate(l.ngaykg)) {
+				dsl.ds.push_back(l);
+			}
+			else {
+				cout << "Ngay k hop le\n";
+			}
+
+		}
+		inFile.close();
+	}
+	else {
+		cout << "Khong the mo file\n";
+	}
+}
 int main() {
 	DSlop dsl;
-	nhapDSlop(dsl);
+	docFile(dsl);
 	xuatDSlop(dsl);
 	system("pause");
 	return 0;
