@@ -141,10 +141,33 @@ void docFile(DSlop& dsl) {
 		cout << "Khong the mo file\n";
 	}
 }
+//====================Tinh Toan====================
+void tongSV(DSlop& dsl, const string& khoa) {
+	int dem = 0;
+	Lop l;
+	for (int i = 0;i < dsl.ds.size();i++) {
+		if (dsl.ds[i].tenkhoa == khoa) {
+			dem = dem + dsl.ds[i].sosv; //chu y khong phai l.sosv vi no se k cap nhat l
+		}
+
+	}
+	cout << "\nTong sv khoa " << khoa << " la: " << dem << endl;
+	// CACH KHAC
+	// for (size_t i = 0; i < dsl.ds.size(); ++i) {
+	//	const Lop& l = dsl.ds[i];
+	//	if (l.tenkhoa == khoa) {
+	//		dem += l.sosv;
+	//	} =============================================
+	//for (const auto& l : dsl.ds) {
+	//if (l.tenkhoa == khoa) {
+	//	dem += l.sosv;
+	//}
+}
 int main() {
 	DSlop dsl;
 	docFile(dsl);
 	xuatDSlop(dsl);
+	tongSV(dsl, "Cong nghe thong tin");
 	system("pause");
 	return 0;
 }
