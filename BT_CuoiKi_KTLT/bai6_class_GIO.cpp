@@ -48,10 +48,10 @@ public:
 		}
 	}
 	void miligiay(int ms) {
-		int tong_s = ms / 1000;
-		gio = (tong_s / 3600) % 24;
-		phut = (tong_s / 60) % 60;
-		giay = tong_s % 60;
+		int tong_s = ms / 1000; //4210s
+		gio = (tong_s / 3600) % 24; //du 1
+		phut = (tong_s / 60) % 60; //du 10
+		giay = tong_s % 60; //du 10
 	}
 };
 
@@ -59,7 +59,7 @@ int main() {
 	Gio g1(99, 30, 50);
 	g1.hienthi();
 	Gio g2;
-	g2.miligiay(55555000);
+	g2.miligiay(4210000); //1h10p10s
 	g2.hienthi();
 	system("pause");
 	return 0;
