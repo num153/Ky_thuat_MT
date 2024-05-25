@@ -8,7 +8,9 @@ private:
 	int gio, phut, giay;
 public:
 	Gio(){
-
+		gio = 0;
+		phut = 0;
+		giay = 0;
 	}
 	Gio(int g, int p, int s) {
 		gio = g;
@@ -53,14 +55,25 @@ public:
 		phut = (tong_s / 60) % 60; //du 10
 		giay = tong_s % 60; //du 10
 	}
+	void nhap();
 };
+void Gio::nhap() {
+	cout << "Nhap gio "; cin >> gio;
+	cout << "Nhap phut "; cin >> phut;
+	cout << "Nhap giay "; cin >> giay;
+}
 
 int main() {
 	Gio g1(99, 30, 50);
 	g1.hienthi();
+	cout << endl;
 	Gio g2;
 	g2.miligiay(4210000); //1h10p10s
 	g2.hienthi();
+	cout << endl;
+	Gio g3;
+	g3.nhap();
+	g3.hienthi();
 	system("pause");
 	return 0;
 }
