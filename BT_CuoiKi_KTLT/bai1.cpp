@@ -71,7 +71,7 @@ void demSotu(string &s){
     }
     }
     cout << "So tu: " << dem << endl;
-    // tuy nhien xin chao,con cai,ai << 3 la sai
+    // tuy nhien xin chao,con cai,ai << 3 ?
 }
 void check(string s, bool func(string s)){
     if(func(s)){
