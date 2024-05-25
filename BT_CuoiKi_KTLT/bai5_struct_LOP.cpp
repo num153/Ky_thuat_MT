@@ -163,11 +163,38 @@ void tongSV(DSlop& dsl, const string& khoa) {
 	//	dem += l.sosv;
 	//}
 }
+void demLop(DSlop& dsl, const string& khoa) {
+	int dem = 0;
+	for (int i = 0;i < dsl.ds.size();i++) {
+		if (dsl.ds[i].tenkhoa == khoa) {
+			dem++;
+		}
+	}
+	cout << "Tong so lop khoa " << khoa << " la: " << dem << endl;
+}
+void xoa1lop(DSlop& dsl) {
+	int x;
+	cout << "\nMuon xoa lop thu may: "; cin >> x;
+	dsl.ds.erase(dsl.ds.begin() + x - 1);
+	cout << "Ma lop muon xoa: ";
+	char ml[5];
+	cin.ignore();
+	cin.getline(ml, 5);
+	for (int i = 0;i < dsl.ds.size();i++) {
+		if (strcmp(dsl.ds[i].malop, ml)==0) { //chu y ==0 nhe
+			dsl.ds.erase(dsl.ds.begin() + i);
+		}
+	}
+}
+
 int main() {
 	DSlop dsl;
 	docFile(dsl);
 	xuatDSlop(dsl);
 	tongSV(dsl, "Cong nghe thong tin");
+	demLop(dsl, "Ngon ngu");
+	xoa1lop(dsl);
+	xuatDSlop(dsl);
 	system("pause");
 	return 0;
 }
